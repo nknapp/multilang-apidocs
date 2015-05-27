@@ -1,0 +1,35 @@
+{
+  "name": "multilang-apidocs",
+  "version": "0.0.0",
+  "description": "api-doc generator for multiple languages",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nknapp/multilang-apidocs.git"
+  },
+  "author": {
+    "name": "Nils Knappmeier",
+    "email": "npm@knappi.org",
+    "url": "https://github.com/nknapp"
+  },
+  "bugs": {
+    "url": "https://github.com/nknapp/multilang-apidocs/issues"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jasmine && standard",
+    "format": "standard --format"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "^2.3.1",
+    "standard": "^3.11.0",
+    "verb": "^0.7.4"
+  },
+  "standard": {
+    "ignore": [
+      "spec/fixtures/**"
+    ]
+  },
+  "keywords": []
+}
