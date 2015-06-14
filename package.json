@@ -20,11 +20,18 @@
     "test": "jasmine && standard",
     "format": "standard --format"
   },
-  "dependencies": {},
+  "dependencies": {
+    "comment-patterns": "^0.6.0",
+    "doctrine": "^0.6.4",
+    "handlebars": "^3.0.3",
+    "lodash": "^3.9.3",
+    "multilang-extract-comments": "^0.1.2"
+  },
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-handlebars": "^4.0.0",
     "jasmine": "^2.3.1",
-    "standard": "^3.11.0",
-    "verb": "^0.7.4"
+    "standard": "^4.0.1"
   },
   "standard": {
     "ignore": [

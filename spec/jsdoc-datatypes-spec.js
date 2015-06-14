@@ -12,12 +12,13 @@
 
 'use strict'
 
+var multilangApidocs = require('../')
 var _ = require("lodash");
 var loadFixture = require("./support/load-fixture.js");
 
 describe('multilang-apidocs:', function () {
-  it('should have output for all possible context-types', function() {
-    loadFixture("main.js");
+  it('should have output for all possible datatypes', function() {
+    loadFixture("types.js");
   })
 })
 
