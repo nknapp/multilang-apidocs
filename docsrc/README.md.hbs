@@ -1,0 +1,30 @@
+# {{name}}
+
+>> {{description}}
+
+
+# Example
+
+Consider the following file `fixture.js`
+
+{{include 'examples/fixture.js'}}
+
+The following code-snippet will output the
+apidoc-comments:
+
+{{example 'examples/example.js'}}
+
+Output:
+
+{{execFile 'examples/example.js' 'json'}}
+
+# API
+
+{{publicApi 'index.js'}}
+
+
+# Author
+
+{{author.name}} <br/>
+{{author.email}} <br/>
+[{{author.url}}]({{author.url}})

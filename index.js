@@ -36,6 +36,7 @@ var templates = {
  *    This parameter can either be a function or a plain object.
  *    See ['filter definitions'](#filterDefinitions) for details
  * @return {string[]} a list of strings containing the apidoc in markdown format.
+ * @api public
  */
 module.exports = function multilangApidocs (string, options) {
   options = _.merge({}, {
