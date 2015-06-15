@@ -61,6 +61,7 @@ function h(variableParameter) {}
  */
 function i(optionalParameter) {}
 
+
 /**
  * https://developers.google.com/closure/compiler/docs/js-for-compiler
  * @param {function(?string=, number=)} fnWithOptionParameter

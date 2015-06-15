@@ -16,7 +16,6 @@ function aFunction(number, string) {
 
 }
 
-
 var x = {
   /**
    * This is a function in a property (with a doc comment)
@@ -30,20 +29,7 @@ var x = {
    * @return {{abc: string, def: number}} what it returns
    * @api public
    */
-  abcPropertyFunction: function(abc,cdef) {
+  aPropertyFunction: function(abc,cdef) {
 
   }
 }
-
-var y = {
-  /**
-   * @name abc  asdasdasd
-   * @param abc
-   * @param cdef
-   * @api public
-   */
-  abc: function(abc,cdef) {
-
-  }
-}
-
