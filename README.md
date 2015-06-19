@@ -63,7 +63,7 @@ console.log(apidocs);
 
 Output:
 
-```json
+```md
 ## aFunction
 
 This is a function with a doc comment
@@ -107,7 +107,7 @@ a list with one markdown-string per comment.
    of the code-context and the parsed comment    
 * options.filter: **(FilterDefinition | function(object):boolean)=** - filter the displayed comments
    This parameter can either be a function or a plain object.
-   See [&#x27;filter definitions&#x27;](#filterDefinitions) for details    
+   See ['filter definitions'](#filterDefinitions) for details    
 
 
 
