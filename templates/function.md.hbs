@@ -3,16 +3,14 @@
 {{description}}
 
 {{#if params}}
-### Parameters:
+* Parameters:
 {{/if}}
-
 {{#each params}}
-* {{name}}: **{{typeDef type}}** {{#if description}}- {{description}}{{/if}}    
+  * {{name}}: **{{typeDef type}}** {{#if description}}- {{description}}{{/if}}    
 {{/each}}
 
 {{#if returns}}
-### Returns:
-    
-* **{{typeDef returns.type}}** {{#if returns.description}}- {{returns.description}}{{/if}}
+* Returns:
+  * **{{typeDef returns.type}}** {{#if returns.description}}- {{returns.description}}{{/if}}
 {{/if}}
 
