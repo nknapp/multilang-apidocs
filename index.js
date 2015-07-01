@@ -10,6 +10,7 @@
 var extract = require('multilang-extract-comments')
 var patterns = require('comment-patterns')
 var doctrine = require('doctrine')
+var debug = require("debug")("multilang-apidocs:index");
 var _ = require('lodash')
 var compile = require('./lib/compile.js')
 // var debug = require('debug')('multilang-apidocs')
@@ -38,7 +39,7 @@ var templates = {
  * @return {string[]} a list of strings containing the apidoc in markdown format.
  * @api public
  */
-module.exports = function multilangApidocs (string, options) {
+module.exports = function multilangApidocs(string, options) {
   options = _.merge({}, {
     filter: filterDefaults,
     defaults: {}
@@ -58,8 +59,11 @@ module.exports = function multilangApidocs (string, options) {
 
       if (commentFilter(resultItem, options.filter)) {
         var template = templates[resultItem.type]
+        debug("Parsed comment", resultItem);
         if (template) {
-          result.push(template(resultItem))
+          var mdItem = template(resultItem);
+          debug("Rendered comment", mdItem);
+          result.push(mdItem)
         } else {
           result.noTemplateFoundFor.push(resultItem)
         }
@@ -75,7 +79,7 @@ module.exports = function multilangApidocs (string, options) {
  * Merge the extracted comment information (doctrine)
  * with the code-context information
  */
-function parse (comment, filename, defaults) {
+function parse(comment, filename, defaults) {
   var context = patterns.codeContext(filename).detect(comment.code, comment.codeStart)
   var doctrineResult = doctrine.parse(comment.content, {})
   // Run the parsed comment through a postprocessor to create
@@ -87,9 +91,9 @@ function parse (comment, filename, defaults) {
       var result = tagsByTitle[tag.title] = tagsByTitle[tag.title] || []
       result.push(tag)
     })
-  // console.log("comment",comment, doctrineResult)
-  // console.log("tagsByTitle", tagsByTitle)
-  // comment.params = context.params.map
+    // console.log("comment",comment, doctrineResult)
+    // console.log("tagsByTitle", tagsByTitle)
+    // comment.params = context.params.map
   }
 
   /**
@@ -146,18 +150,18 @@ var filterDefaults = {
  * [options.filter-parameter](#multilangApidocs) or the main function.
  *
  */
-function commentFilter (postProcessedComment, filter) {
+function commentFilter(postProcessedComment, filter) {
   if (_.isFunction(filter)) {
     return filter(postProcessedComment)
   }
   if (_.isPlainObject(filter)) {
     var basedOnApiTag =
-    (filter.showPublic && postProcessedComment.api === 'public') ||
+      (filter.showPublic && postProcessedComment.api === 'public') ||
       (filter.showPrivate && postProcessedComment.api === 'private') ||
       (filter.showWithoutApiTag && !postProcessedComment.api)
 
     var basedOnCommentType =
-    (!filter.onlyApidocComments || postProcessedComment.isApidocComment)
+      (!filter.onlyApidocComments || postProcessedComment.isApidocComment)
     // console.log({
     //  basedOnApiTag: basedOnApiTag,
     //  basedOnCommentType: basedOnCommentType,
