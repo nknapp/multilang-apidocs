@@ -110,7 +110,7 @@ function parse(comment, filename, defaults) {
    *
    */
   return {
-    name: (tagsByTitle.name || {}).name || context.name || (defaults && defaults.name),
+    name: (firstTagEntryNamed('name',tagsByTitle).name) || context.name || (defaults && defaults.name),
     description: doctrineResult.description,
     type: context.type,
     params: tagsByTitle.param,
@@ -119,6 +119,10 @@ function parse(comment, filename, defaults) {
     isApidocComment: !!comment.info.apidoc,
     id: tagsByTitle.id && tagsByTitle.id[0].description
   }
+}
+
+function firstTagEntryNamed(tagName,tagsByTitle) {
+  return (tagsByTitle[tagName] && tagsByTitle[tagName][0]) || {};
 }
 
 /**
