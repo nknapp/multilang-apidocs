@@ -14,6 +14,7 @@ var debug = require('debug')('multilang-apidocs:index')
 var _ = require('lodash')
 var compile = require('./lib/compile.js')
 var findPackage = require('find-package')
+var path = require('path')
 // var debug = require('debug')('multilang-apidocs')
 
 var functionTemplate = compile('function.md.hbs')
@@ -95,12 +96,23 @@ function parse (comment, filename, defaults) {
   // console.log("tagsByTitle", tagsByTitle)
   // comment.params = context.params.map
   }
+  var absFile = path.resolve(filename)
+  var _package = findPackage(path.dirname(absFile), true)
+  var packageUrl = _package && _package.repository && _package.repository.url
+  var url
+  // TODO: Detect if the file is in the current package (filename of the link source is needed for that)
+  // TODO: and create a relative link
+  if (packageUrl && packageUrl.lastIndexOf('https://github.com/', 0) === 0) {
+    var inPackagePath = path.relative(path.dirname(_package.paths.absolute), absFile)
+    url = packageUrl.replace(/\.git$/, '') + '/blob/master/' + inPackagePath
+  }
 
   /**
    * @id MultilangApidocs.ApiDefinition
    * @typedef {object} ApiDefinition
    * @property {string} name the name of the documented entity
-   * @property {string} filename the filename in which the comment was found
+   * @property {string} url the url in which the comment was found (a github url, if the repo is a github repository
+   *    and a relative url, if it is in the same repository as the working directory)
    * @property {string} description the description of the
    * @property {string} type one of the following types: TODO
    * @property {object[]} param function parameter-type definitions
@@ -112,7 +124,9 @@ function parse (comment, filename, defaults) {
    */
   return {
     name: (firstTagEntryNamed('name', tagsByTitle).name) || context.name || (defaults && defaults.name),
-    filename: filename,
+    line: comment.codeStart,
+    url: url,
+    moduleName: _package.name,
     description: doctrineResult.description,
     type: context.type,
     params: tagsByTitle.param,
