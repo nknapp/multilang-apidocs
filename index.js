@@ -111,6 +111,7 @@ function parse(comment, filename, defaults) {
    */
   return {
     name: (firstTagEntryNamed('name',tagsByTitle).name) || context.name || (defaults && defaults.name),
+    filename: filename,
     description: doctrineResult.description,
     type: context.type,
     params: tagsByTitle.param,
