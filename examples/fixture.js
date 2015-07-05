@@ -12,9 +12,7 @@
  * @param {{a: string}} string a string
  * @api public
  */
-function aFunction(number, string) {
-
-}
+function aFunction (number, string) {}
 
 var x = {
   /**
@@ -26,7 +24,5 @@ var x = {
    * @return {{abc: string, def: number}} what it returns
    * @api public
    */
-  aPropertyFunction: function(abc,cdef) {
-
-  }
+  aPropertyFunction: function (abc, cdef) {}
 }

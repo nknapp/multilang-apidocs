@@ -36,7 +36,8 @@
   },
   "standard": {
     "ignore": [
-      "spec/fixtures/**"
+      "spec/fixtures/**",
+      "examples/fixture.js"
     ]
   },
   "keywords": []
