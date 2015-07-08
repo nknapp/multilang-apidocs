@@ -38,7 +38,7 @@ var templates = {
  * @param {(FilterDefinition|function(object):boolean)=} options.filter filter the displayed comments
  *    This parameter can either be a function or a plain object.
  *    See ['filter definitions'](#filterDefinitions) for details
- * @return {string[]} a list of strings containing the apidoc in markdown format.
+ * @return {{marddown: string, parsed: ApiDefinition}[]} a list of strings containing the apidoc in markdown format.
  * @api public
  */
 module.exports = function multilangApidocs (string, options) {
@@ -49,10 +49,7 @@ module.exports = function multilangApidocs (string, options) {
 
   var comments = extract(string, options)
   var result = []
-  // For debugging purpose: List of comment rejected by the filter
-  result.filteredComments = []
-  // List of comments for which not template could be found
-  result.noTemplateFoundFor = []
+
   for (var key in comments) {
     if (comments.hasOwnProperty(key)) {
       var comment = comments[key]
@@ -64,12 +61,18 @@ module.exports = function multilangApidocs (string, options) {
         if (template) {
           var mdItem = template(resultItem)
           debug('Rendered comment', mdItem)
-          result.push(mdItem)
+          result.push({
+            markdown: mdItem,
+            parsed: resultItem
+          })
         } else {
-          result.noTemplateFoundFor.push(resultItem)
+          result.push({
+            parsed: resultItem,
+            markdown: "no template found"
+          });
         }
       } else {
-        result.filteredComments.push(resultItem)
+        debug("filtering comment:",resultItem);
       }
     }
   }
