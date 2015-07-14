@@ -21,7 +21,9 @@ var functionTemplate = compile('function.md.hbs')
 
 var templates = {
   'function statement': functionTemplate,
-  'function expression': functionTemplate
+  'function expression': functionTemplate,
+  'method': functionTemplate
+
 }
 
 /**
@@ -66,9 +68,10 @@ module.exports = function multilangApidocs (string, options) {
             parsed: resultItem
           })
         } else {
+          debug("no template found",resultItem);
           result.push({
             parsed: resultItem,
-            markdown: "no template found"
+            markdown: "no template found for " + JSON.stringify(resultItem,null,2)
           });
         }
       } else {
@@ -85,6 +88,7 @@ module.exports = function multilangApidocs (string, options) {
  */
 function parse (comment, filename, defaults) {
   var context = patterns.codeContext(filename).detect(comment.code, comment.codeStart)
+  console.log(comment, "XXXXXXXXXXXXXXXXXXXXXX", context);
   var doctrineResult = doctrine.parse(comment.content, {})
   // Run the parsed comment through a postprocessor to create
   // a format more suitable for templates
@@ -92,7 +96,11 @@ function parse (comment, filename, defaults) {
   var tagsByTitle = {}
   if (doctrineResult.tags) {
     doctrineResult.tags.forEach(function (tag) {
-      var result = tagsByTitle[tag.title] = tagsByTitle[tag.title] || []
+      // Lazily create properties (beware that some properties may be named like native properties)
+      if (!tagsByTitle.hasOwnProperty(tag.title)) {
+        tagsByTitle[tag.title] = [];
+      }
+      var result = tagsByTitle[tag.title];
       result.push(tag)
     })
   // console.log("comment",comment, doctrineResult)
@@ -103,11 +111,9 @@ function parse (comment, filename, defaults) {
   var _package = findPackage(path.dirname(absFile), true)
   var packageUrl = _package && _package.repository && _package.repository.url
   var url
-  // TODO: Detect if the file is in the current package (filename of the link source is needed for that)
-  // TODO: and create a relative link
   if (packageUrl && packageUrl.lastIndexOf('https://github.com/', 0) === 0) {
     var inPackagePath = path.relative(path.dirname(_package.paths.absolute), absFile)
-    url = packageUrl.replace(/\.git$/, '') + '/blob/master/' + inPackagePath
+    url = packageUrl.replace(/\.git$/, '') + '/blob/v'+_package.version+'/' + inPackagePath
   }
 
   /**

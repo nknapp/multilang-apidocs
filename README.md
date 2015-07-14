@@ -34,7 +34,26 @@ This will generate the following output
 
 ##  API-reference
 
-[object Object]
+## [multilangApidocs](https://github.com/nknapp/multilang-apidocs/blob/master/index.js#L44)
+
+The function extracts apidoc comments from a string and returns
+a list with one markdown-string per comment.
+
+* Parameters:
+  * string: **string** - contents of the source-code file.    
+  * options: **object=** - options    
+  * options.filename: **string=** - the name of the source-code file (Used to apply
+   language-specific comment patterns and code-context detection.    
+  * options.defaults: **object=** - specify default values for values
+   of the code-context and the parsed comment    
+  * options.filter: **(FilterDefinition | function(object):boolean)=** - filter the displayed comments
+   This parameter can either be a function or a plain object.
+   See ['filter definitions'](#filterDefinitions) for details    
+
+* Returns:
+  * **Array<{marddown: string, parsed: ApiDefinition}>** - a list of strings containing the apidoc in markdown format.
+
+
 
 ## License
 
