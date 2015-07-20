@@ -19,7 +19,7 @@ describe('multilang-apidocs:', function () {
   it('should only provide public comments by default', function () {
     var result = runApidocs('filter.js')
     expect(result.length).toBe(1)
-    expect(result[0]).toMatch(/publicFunction/)
+    expect(result[0].markdown).toMatch(/publicFunction/)
   })
 
   it('should provide @api public tags if filter.showPublic is true', function () {
@@ -29,7 +29,7 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(1)
-    expect(result[0]).toMatch(/publicFunction/)
+    expect(result[0].markdown).toMatch(/publicFunction/)
   })
 
   it('should provide @api private comments if filter.showPrivate is true', function () {
@@ -39,8 +39,8 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(2)
-    expect(result[0]).toMatch(/publicFunction/)
-    expect(result[1]).toMatch(/privateFunction/)
+    expect(result[0].markdown).toMatch(/publicFunction/)
+    expect(result[1].markdown).toMatch(/privateFunction/)
   })
 
   it('should not provide @api public comments if filter.showPublic is false', function () {
@@ -51,7 +51,7 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(1)
-    expect(result[0]).toMatch(/privateFunction/)
+    expect(result[0].markdown).toMatch(/privateFunction/)
   })
 
   it('should provide comments without @api tag if filter.showWithoutApiTag is true', function () {
@@ -61,8 +61,8 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(2)
-    expect(result[0]).toMatch(/publicFunction/)
-    expect(result[1]).toMatch(/functionWithoutApiTag/)
+    expect(result[0].markdown).toMatch(/publicFunction/)
+    expect(result[1].markdown).toMatch(/functionWithoutApiTag/)
   })
 
   it('should provide non-apidoc comments if filter.onlyApidocComments is false', function () {
@@ -72,8 +72,8 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(2)
-    expect(result[0]).toMatch(/publicFunction/)
-    expect(result[1]).toMatch(/nonApidocComment/)
+    expect(result[0].markdown).toMatch(/publicFunction/)
+    expect(result[1].markdown).toMatch(/nonApidocComment/)
   })
 
   it('should also accept a function as filter', function () {
@@ -83,7 +83,7 @@ describe('multilang-apidocs:', function () {
       }
     })
     expect(result.length).toBe(1)
-    expect(result[0]).toMatch(/privateFunction/)
+    expect(result[0].markdown).toMatch(/privateFunction/)
 
   })
 

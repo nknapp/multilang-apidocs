@@ -18,7 +18,7 @@ var runApidocs = require('./support/run-apidocs.js')
 describe('multilang-apidocs:', function () {
   it('should have output for all possible context-types', function () {
     var result = runApidocs('code-context.js')
-    expect(result[0]).toMatch(/aFunction/)
-    expect(result[1]).toMatch(/aPropertyFunction/)
+    expect(result[0].markdown).toMatch(/aFunction/)
+    expect(result[1].markdown).toMatch(/aPropertyFunction/)
   })
 })
