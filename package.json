@@ -21,9 +21,10 @@
     "format": "standard --format"
   },
   "dependencies": {
-    "comment-patterns": "^0.7.0",
+    "comment-patterns": "^0.8.0",
     "debug": "^2.2.0",
     "doctrine": "^0.6.4",
+    "find-package": "^1.0.0",
     "handlebars": "^3.0.3",
     "lodash": "^3.9.3",
     "multilang-extract-comments": "^0.2.1"
