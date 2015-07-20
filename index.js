@@ -88,7 +88,6 @@ module.exports = function multilangApidocs (string, options) {
  */
 function parse (comment, filename, defaults) {
   var context = patterns.codeContext(filename).detect(comment.code, comment.codeStart)
-  console.log(comment, 'XXXXXXXXXXXXXXXXXXXXXX', context)
   var doctrineResult = doctrine.parse(comment.content, {})
   // Run the parsed comment through a postprocessor to create
   // a format more suitable for templates

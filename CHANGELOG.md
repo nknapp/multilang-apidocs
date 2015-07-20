@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Upcoming
+
+### Fix
+
+- Remove unneeded console.log
+
 ## v0.2.0 - 2015-07-20
 
 ### Add
