@@ -1,6 +1,6 @@
 {
   "name": "multilang-apidocs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "api-doc generator for multiple languages",
   "repository": {
     "type": "git",
