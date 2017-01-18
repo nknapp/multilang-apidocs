@@ -21,19 +21,19 @@
     "format": "standard --format"
   },
   "dependencies": {
-    "comment-patterns": "^0.8.0",
+    "comment-patterns": "^0.9.0",
     "debug": "^2.2.0",
-    "doctrine": "^0.6.4",
+    "doctrine": "^2.0.0",
     "find-package": "^1.0.0",
-    "handlebars": "^3.0.3",
-    "lodash": "^3.9.3",
+    "handlebars": "^4.0.6",
+    "lodash": "^4.17.4",
     "multilang-extract-comments": "^0.2.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-compile-handlebars": "^0.5.0",
+    "gulp-compile-handlebars": "^0.6.1",
     "jasmine": "^2.3.1",
-    "standard": "^4.0.1"
+    "standard": "^8.6.0"
   },
   "standard": {
     "ignore": [
